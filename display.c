@@ -5,10 +5,7 @@
  *      Author: skatore
  */
 
-#include "main.h"
 #include "display.h"
-#include "lptim.h"
-#include "dma.h"
 
 uint16_t display_buffer[7]={0x0800,0x0400,0x0200,0x0100,0x1000,0x2000,0x4000};//
 uint8_t display_num[]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71,0xff};
@@ -113,14 +110,19 @@ void display_write_char(uint8_t character,uint8_t position){
 
 }
 
+void display_init(void){
+//step 1: Initilasise the timer here which will trigger the DMA transfer
+	//e.g Timer_init(timer_handle, trigger_event);
+//Initilalise DMA here and assign source and destination address and timer trigger for DMA 
+	//e.g DMA_init(DMA_handle,trigger_source, DMA_config);
+
+ 
+}
+
 void display_start(void){
-  if(HAL_DMA_Start(&hdma_dma_generator0, (uint32_t)&display_buffer[0], (uint32_t )&(GPIOE->ODR), 7)!=HAL_OK){
-      Error_Handler();
-  }
-  if(HAL_DMAEx_EnableMuxRequestGenerator(&hdma_dma_generator0 )!= HAL_OK){
-      Error_Handler();
-  }
-  if(HAL_LPTIM_Counter_Start(&hlptim1, 10000) != HAL_OK){
-      Error_Handler();
-  }
+//Start DMA here  (with source_address,destination_address, transfer_lenght)
+	/*e.g if(DMA_Start(&dma_0, (uint32_t)&display_buffer[0], (uint32_t )&(GPIOE->ODR), 7);*/
+
+//start timer, with period value, which is triggers the DMA transfer
+ 	/*e.g. if(TIM_Counter_Start(&tim1, 10000) ;*/
 }
