@@ -3,7 +3,7 @@
 
 
 
-## This driver assumes that the display pins are multiplexed in following fasion and the 7 segment display is in COMMON CATHODE configuration <br /> 
+## This driver assumes that the display pins are multiplexed in following fashion and the 7 segment display is in COMMON CATHODE configuration <br /> 
  Display_port pin0: Seg_1(a) (of position 1..8)<br />
         "     pin1: seg_2(b)   "<br /> 
        "      pin2: seg_3(c)   "<br /> 
@@ -29,5 +29,5 @@ Steps to import this driver:<br />
 Step 1: Find the port address to which the display is interfaced.<br /> 
 Step 2: Find the timer which can trigger the DMA transfer (you can run DMA in free run also, in this case you will not have control over refresh rate of display ).<br /> 
 Step 3: Implement timer and DMA initiallisation in display_init() funtion.<br /> 
-Step 4: Start the DNA first and then timer(calculate freq: desired_display_frequnecy / numberof_transfers) in display_start() function.<br /> 
+Step 4: Start the DMA first and then timer(calculate freq: desired_display_frequnecy / numberof_transfers) in display_start() function.<br /> 
 Step 5: Use provided functions to write on display.<br /> 
